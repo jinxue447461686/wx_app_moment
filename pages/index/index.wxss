@@ -1,0 +1,53 @@
+/**index.wxss**/
+.moment-item {
+    margin:30rpx 30rpx;
+    background-color:white;
+    border-radius:5rpx;
+    border-style:solid ;
+    border-width:1rpx;
+    border-color:#D5D5D5;
+}
+.moment-item-title{
+   font-family: Helvetica Neue, Helvetica, STHeiTi, sans-serif;
+   font-size:14px;
+   height:75rpx;
+   display:flex;
+   margin:20rpx 20rpx 0rpx;
+}
+.moment-item-image{
+    display:flex;
+    justify-content:center;
+}
+.moment-item-play{
+    float:left;
+    width:45px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.moment-item-button{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    height:75rpx;
+    border-top-style:solid;
+    border-top-color:#D5D5D5;
+    border-top-width:1rpx;
+    margin-top:20rpx;
+}
+.zan-button{
+     display: flex;
+     flex-direction: row;
+     padding:0 20rpx;
+     height:40rpx;
+     width:100rpx;
+}
+.button-child{
+    flex:1;
+    line-height:50rpx;
+    font-size:13px;
+}
+.img-icon{
+    width:40rpx;
+    height:40rpx;
+}

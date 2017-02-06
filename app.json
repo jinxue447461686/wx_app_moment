@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "魔漫塔",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "green",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "动态",
+        "pagePath": "pages/index/index",
+        "iconPath": "./images/home_default.png",
+        "selectedIconPath": "./images/home_selected.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/my/my",
+        "iconPath": "./images/account_default.png",
+        "selectedIconPath": "./images/account_selected.png"
+      }
+    ]
+  }
+}

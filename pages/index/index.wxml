@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="container">
+    <!-- 加载 -->
+    <loading hidden="{{loadingHidden}}">
+        加载中...
+    </loading>
+    <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;"
+                 bindscrolltolower="loadMoreList">
+        <view class="moment-item" wx:for="{{momentInfoList}}" wx:for-index="idx" wx:for-item="moment">
+            <view class="moment-item-title">{{moment.momentTitle}}</view>
+            <view class="moment-item-image" data-index="{{moment.momentId}}" bindtap="btnPlayMoment">
+                <image class="moment-item-play" mode="aspectFit" src="{{moment.playIconUrl}}"></image>
+                <image mode="scaleToFill" src="{{moment.fileCoverUrl}}"></image>
+            </view>
+            <view class="moment-item-button">
+                <view class="zan-button">
+                    <view class="button-child" data-index="{{moment.momentId}}" bindtap="btnUpMomentCount">
+                        <image class="img-icon" mode="aspectFill" src="{{moment.upIconUrl}}"/>
+                    </view>
+                    <view class="button-child">{{moment.upCount}}</view>
+                </view>
+                <image class="img-icon" src="../../images/shu.png"/>
+                <view class="zan-button">
+                    <view class="button-child" data-index="{{moment.momentId}}" bindtap="btnDownMomentCount">
+                        <image class="img-icon" mode="aspectFill" src="{{moment.downIconUrl}}"/>
+                    </view>
+                    <view class="button-child">{{moment.downCount}}</view>
+                </view>
+                <image class="img-icon" src="../../images/shu.png"/>
+                <view class="zan-button">
+                    <view class="button-child" data-index="{{moment.momentId}}" bindtap="btnDownMomentCount">
+                        <image class="img-icon" mode="aspectFill" src="../../images/comments_default.png"/>
+                    </view>
+                    <view class="button-child">{{moment.commentCount}}</view>
+                </view>
+                <image class="img-icon" src="../../images/shu.png"/>
+                <view class="zan-button">
+                    <view class="button-child" data-index="{{moment.momentId}}" bindtap="btnDownMomentCount">
+                        <image class="img-icon" mode="aspectFill" src="../../images/skip_default.png"/>
+                    </view>
+                    <view class="button-child">{{moment.shareCount}}</view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
