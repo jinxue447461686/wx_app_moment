@@ -1,5 +1,5 @@
-//const API_BASE = 'http://www.handsome.ren/api';
-const API_BASE = 'http://localhost:1111/api';
+const API_BASE = 'https://www.vuouv.com/api';
+//const API_BASE = 'http://localhost:1111/api';
 
 const API_V1 = API_BASE + '/v1';
 // moment

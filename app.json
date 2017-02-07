@@ -18,14 +18,14 @@
       {
         "text": "动态",
         "pagePath": "pages/index/index",
-        "iconPath": "./images/home_default.png",
-        "selectedIconPath": "./images/home_selected.png"
+        "iconPath": "images/home_default.png",
+        "selectedIconPath": "images/home_selected.png"
       },
       {
         "text": "我的",
         "pagePath": "pages/my/my",
-        "iconPath": "./images/account_default.png",
-        "selectedIconPath": "./images/account_selected.png"
+        "iconPath": "images/account_default.png",
+        "selectedIconPath": "images/account_selected.png"
       }
     ]
   }
