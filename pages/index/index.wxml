@@ -5,7 +5,7 @@
         加载中...
     </loading>
     <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;"
-                 bindscrolltolower="loadMoreList">
+                 bindscrolltolower="loadMoreList" lower-threshold="60">
         <view class="moment-item" wx:for="{{momentInfoList}}" wx:for-index="idx" wx:for-item="moment">
             <view class="moment-item-title">{{moment.momentTitle}}</view>
             <view class="moment-item-image" data-index="{{moment.momentId}}" bindtap="btnPlayMoment">

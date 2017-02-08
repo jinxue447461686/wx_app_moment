@@ -9,6 +9,7 @@ var getMomentList = function (that) {
     });
     requests.getMomentsList(function (result) {
         var list = that.data.momentInfoList;
+        // 添加新增的gif
         for (var i = 0; i < result.content.momentInfoList.length; i++) {
             result.content.momentInfoList[i].playIconUrl = "../../images/play.png";
             result.content.momentInfoList[i].playIconHidden = "";
@@ -22,8 +23,7 @@ var getMomentList = function (that) {
         });
     });
 };
-// 播放状态 0 播放,1暂停
-var playStatue = 0;
+
 // 更改moment状态
 var changeMomentList = function (that, momentId, type) {
     var list = that.data.momentInfoList;
@@ -45,6 +45,7 @@ var changeMomentList = function (that, momentId, type) {
                         });
                     });
                 }
+                break;
             }
             // 踩
             if (type == 2) {
@@ -62,24 +63,31 @@ var changeMomentList = function (that, momentId, type) {
                         });
                     });
                 }
+                break;
             }
-            // 播放
-            if (type == 3) {
-                var status = playStatue % 2 == 0 ? true : false;
-                playStatue++;
-                if (status) {
+        }
+
+        // 播放
+        if (type == 3) {
+            // 只加载播放的gif,其余的关闭加载
+            if (list[i].momentId == momentId) {
+                var playStatus = list[i].playIconHidden;
+                if (playStatus == "") {
                     // 加载gif
-                    list[i].fileCoverUrl = list[i].fileSourceUrl+"?num="+Math.random();
+                    list[i].fileCoverUrl = list[i].fileSourceUrl + "?num=" + Math.random();
                     list[i].playIconHidden = "display:none";
                 } else {
                     list[i].fileCoverUrl = list[i].fileSourceCoverUrl;
                     list[i].playIconHidden = "";
                 }
-                that.setData({
-                    momentInfoList: list
-                });
+            } else {
+                list[i].playIconUrl = "../../images/play.png";
+                list[i].playIconHidden = "";
+                list[i].fileCoverUrl = list[i].fileSourceCoverUrl;
             }
-            break;
+            that.setData({
+                momentInfoList: list
+            });
         }
     }
 }
@@ -95,15 +103,7 @@ Page({
     },
     // 初始化时调用
     onLoad: function () {
-        console.log('onLoad');
         var that = this;
-        //调用应用实例的方法获取全局数据
-        app.getUserInfo(function (userInfo) {
-            //更新数据
-            that.setData({
-                userInfo: userInfo
-            })
-        });
         //   这里要非常注意，微信的scroll-view必须要设置高度才能监听滚动事件
         // ，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
         wx.getSystemInfo({
