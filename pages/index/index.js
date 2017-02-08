@@ -8,13 +8,11 @@ var getMomentList = function (that) {
         loadingHidden: false
     });
     requests.getMomentsList(function (result) {
-        console.log(result.content);
         var list = that.data.momentInfoList;
         for (var i = 0; i < result.content.momentInfoList.length; i++) {
             result.content.momentInfoList[i].playIconUrl = "../../images/play.png";
-            var moment = result.content.momentInfoList[i];
-            console.log(moment)
-            list.push(moment);
+            result.content.momentInfoList[i].playIconHidden = "";
+            list.push(result.content.momentInfoList[i]);
         }
         that.setData({
             momentInfoList: list
@@ -24,6 +22,8 @@ var getMomentList = function (that) {
         });
     });
 };
+// 播放状态 0 播放,1暂停
+var playStatue = 0;
 // 更改moment状态
 var changeMomentList = function (that, momentId, type) {
     var list = that.data.momentInfoList;
@@ -65,9 +65,16 @@ var changeMomentList = function (that, momentId, type) {
             }
             // 播放
             if (type == 3) {
-                // 加载gif
-                list[i].fileCoverUrl = list[i].fileSourceUrl;
-                list[i].playIconUrl = "..";
+                var status = playStatue % 2 == 0 ? true : false;
+                playStatue++;
+                if (status) {
+                    // 加载gif
+                    list[i].fileCoverUrl = list[i].fileSourceUrl+"?num="+Math.random();
+                    list[i].playIconHidden = "display:none";
+                } else {
+                    list[i].fileCoverUrl = list[i].fileSourceCoverUrl;
+                    list[i].playIconHidden = "";
+                }
                 that.setData({
                     momentInfoList: list
                 });
@@ -134,7 +141,6 @@ Page({
     },
     // 加载更多
     loadMoreList: function (e) {
-        console.log("更多");
         var that = this;
         getMomentList(that);
     }

@@ -9,7 +9,8 @@
         <view class="moment-item" wx:for="{{momentInfoList}}" wx:for-index="idx" wx:for-item="moment">
             <view class="moment-item-title">{{moment.momentTitle}}</view>
             <view class="moment-item-image" data-index="{{moment.momentId}}" bindtap="btnPlayMoment">
-                <image class="moment-item-play" mode="aspectFit" src="{{moment.playIconUrl}}"></image>
+                <image class="moment-item-play" style="{{moment.playIconHidden}}" mode="aspectFit"
+                       src="{{moment.playIconUrl}}"></image>
                 <image mode="scaleToFill" src="{{moment.fileCoverUrl}}"></image>
             </view>
             <view class="moment-item-button">

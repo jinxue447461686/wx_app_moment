@@ -15,15 +15,15 @@
    margin:20rpx 20rpx 0rpx;
 }
 .moment-item-image{
+    position: relative;
     display:flex;
     justify-content:center;
 }
 .moment-item-play{
-    float:left;
+    position: absolute;
+    left: 300rpx;
+    top: 15rpx;
     width:45px;
-    display: flex;
-    justify-content: center;
-    align-items:center;
 }
 .moment-item-button{
     display: flex;
