@@ -11,8 +11,12 @@ var getMomentList = function (that) {
         var list = that.data.momentInfoList;
         // 添加新增的gif
         for (var i = 0; i < result.content.momentInfoList.length; i++) {
+            // 播放按钮
             result.content.momentInfoList[i].playIconUrl = "../../images/play.png";
             result.content.momentInfoList[i].playIconHidden = "";
+            // 图片地址
+            result.content.momentInfoList[i].showUrl = result.content.momentInfoList[i].fileCoverUrl;
+
             list.push(result.content.momentInfoList[i]);
         }
         that.setData({
@@ -74,16 +78,17 @@ var changeMomentList = function (that, momentId, type) {
                 var playStatus = list[i].playIconHidden;
                 if (playStatus == "") {
                     // 加载gif
-                    list[i].fileCoverUrl = list[i].fileSourceUrl + "?num=" + Math.random();
+                    list[i].showUrl = list[i].fileUrl;
                     list[i].playIconHidden = "display:none";
                 } else {
-                    list[i].fileCoverUrl = list[i].fileSourceCoverUrl;
+                    // 关闭加载gif
+                    list[i].showUrl = list[i].fileCoverUrl;
                     list[i].playIconHidden = "";
                 }
             } else {
                 list[i].playIconUrl = "../../images/play.png";
                 list[i].playIconHidden = "";
-                list[i].fileCoverUrl = list[i].fileSourceCoverUrl;
+                list[i].showUrl = list[i].fileCoverUrl;
             }
             that.setData({
                 momentInfoList: list

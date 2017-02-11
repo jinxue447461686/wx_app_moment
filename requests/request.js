@@ -74,7 +74,7 @@ function getMomentsDetail(momentId) {
 }
 
 // 添加用户信息
-function getAddUserInfo(userInfo) {
+function addUserInfo(userInfo) {
     requestPost(api.users(), userInfo, successCommCallback, successCommCallback, errorCommCallback, completeCommCallback);
 }
 
@@ -106,8 +106,8 @@ function addComment(commentInfo,successCallBack) {
 module.exports = {
     getMomentsList: getMomentsList,
     getMomentsDetail: getMomentsDetail,
-    getAddUserInfo: getAddUserInfo,
     getUserInfoByToken: getUserInfoByToken,
+    addUserInfo: addUserInfo,
     addMomentUpCount: addMomentUpCount,
     addMomentDownCount: addMomentDownCount,
     addMomentShareCount: addMomentShareCount,

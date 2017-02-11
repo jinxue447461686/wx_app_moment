@@ -1,3 +1,5 @@
+var requests = require('./requests/request.js');
+
 //app.js
 App({
     onLaunch: function () {
@@ -17,7 +19,18 @@ App({
                     wx.getUserInfo({
                         success: function (res) {
                             that.globalData.userInfo = res.userInfo;
-                            typeof cb == "function" && cb(that.globalData.userInfo)
+                            console.log(res);
+                            typeof cb == "function" && cb(that.globalData.userInfo);
+                            // 添加用户信息
+                            requests.addUserInfo({
+                                "userNickName": res.userInfo.nickName,
+                                "imageUrl": res.userInfo.avatarUrl,
+                                "gender": res.userInfo.gender,
+                                "userAccount": "",
+                                "token": "",
+                                "city": res.userInfo.city,
+                                "province": res.userInfo.province
+                            });
                         }
                     })
                 }

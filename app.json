@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/comment/comment",
+    "pages/moment/moment"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -12,8 +14,8 @@
   },
   "tabBar": {
     "color": "black",
-    "selectedColor": "green",
-    "borderStyle": "white",
+    "selectedColor": "#319559",
+    "borderStyle": "black",
     "list": [
       {
         "text": "动态",
