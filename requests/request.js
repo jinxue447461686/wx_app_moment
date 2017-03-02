@@ -69,13 +69,13 @@ function getMomentsList(successCallback) {
 }
 
 // 获取moment详情
-function getMomentsDetail(momentId) {
-    requestGet(api.moments() + momentId, {}, successCommCallback, errorCommCallback, completeCommCallback);
+function getMomentsDetail(momentId, successCallBack) {
+    requestGet(api.getMomentsDetail(momentId), {}, successCallBack, errorCommCallback, completeCommCallback);
 }
 
 // 添加用户信息
-function addUserInfo(userInfo) {
-    requestPost(api.users(), userInfo, successCommCallback, successCommCallback, errorCommCallback, completeCommCallback);
+function addUserInfo(userInfo,successCallback) {
+    requestPost(api.users(), userInfo, successCallback, successCommCallback, errorCommCallback, completeCommCallback);
 }
 
 // 根据token获取用户信息
@@ -84,23 +84,31 @@ function getUserInfoByToken(token) {
 }
 
 // 增moment赞数量
-function addMomentUpCount(momentId,successCallBack) {
+function addMomentUpCount(momentId, successCallBack) {
     requestPut(api.momentsUp(momentId), {}, successCallBack, errorCommCallback, completeCommCallback);
 }
 
 // 增moment踩数量
-function addMomentDownCount(momentId,successCallBack) {
+function addMomentDownCount(momentId, successCallBack) {
     requestPut(api.momentsDown(momentId), {}, successCallBack, errorCommCallback, completeCommCallback);
 }
 
 // 增moment分享数量
-function addMomentShareCount(momentId,successCallBack) {
+function addMomentShareCount(momentId, successCallBack) {
     requestPut(api.momentsShare(momentId), {}, successCallBack, errorCommCallback, completeCommCallback);
 }
 
 // 添加moment评论
-function addComment(commentInfo,successCallBack) {
-    requestPost(api.comments(), commentInfo, successCallBack, errorCommCallback, completeCommCallback);
+function addComment(commentInfo,successCallback) {
+    requestPost(api.comments(), commentInfo, successCallback, errorCommCallback, completeCommCallback);
+}
+
+// 根据momentId 获取评论列表
+function getCommentListByMomentId(momentId, pageIndex, pageSize, successCallBack) {
+    requestGet(api.getCommentsByMomentId(momentId), {
+        "pageIndex": pageIndex,
+        "pageSize": pageSize
+    }, successCallBack, errorCommCallback, completeCommCallback);
 }
 
 module.exports = {
@@ -111,5 +119,6 @@ module.exports = {
     addMomentUpCount: addMomentUpCount,
     addMomentDownCount: addMomentDownCount,
     addMomentShareCount: addMomentShareCount,
-    addComment: addComment
+    addComment: addComment,
+    getCommentListByMomentId: getCommentListByMomentId
 }

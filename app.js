@@ -18,9 +18,7 @@ App({
                 success: function () {
                     wx.getUserInfo({
                         success: function (res) {
-                            that.globalData.userInfo = res.userInfo;
                             console.log(res);
-                            typeof cb == "function" && cb(that.globalData.userInfo);
                             // 添加用户信息
                             requests.addUserInfo({
                                 "userNickName": res.userInfo.nickName,
@@ -30,6 +28,11 @@ App({
                                 "token": "",
                                 "city": res.userInfo.city,
                                 "province": res.userInfo.province
+                            }, function (result) {
+                                var userInfo = result.content.userInfo;
+                                that.globalData.userInfo = userInfo;
+                                console.log(userInfo);
+                                typeof cb == "function" && cb(that.globalData.userInfo);
                             });
                         }
                     })

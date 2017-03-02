@@ -2,6 +2,8 @@ var requests = require('../../requests/request.js');
 var util = require('../../utils/util.js');
 
 var app = getApp();
+
+var isStarted = true;
 // 获取moment 列表
 var getMomentList = function (that) {
     that.setData({
@@ -22,9 +24,9 @@ var getMomentList = function (that) {
         that.setData({
             momentInfoList: list
         });
-        that.setData({
-            loadingHidden: true
-        });
+    });
+    that.setData({
+        loadingHidden: true
     });
 };
 
@@ -70,8 +72,7 @@ var changeMomentList = function (that, momentId, type) {
                 break;
             }
         }
-
-        // 播放
+        // gif播放
         if (type == 3) {
             // 只加载播放的gif,其余的关闭加载
             if (list[i].momentId == momentId) {
@@ -119,11 +120,11 @@ Page({
                 });
             }
         });
+        getMomentList(that);
     },
     // 展示时调用
     onShow: function () {
-        var that = this;
-        getMomentList(that);
+        console.log("显示页面");
     },
     // 点赞
     btnUpMomentCount: function (e) {
@@ -143,6 +144,16 @@ Page({
         var that = this;
         var momentId = e.currentTarget.dataset.index;
         changeMomentList(that, momentId, 3);
+    },
+    // 评论信息
+    btnComment: function (e) {
+        var that = this;
+        var momentId = e.currentTarget.dataset.index;
+        wx.navigateTo({url: "/pages/comment/comment?momentId=" + momentId});
+    },
+    // 分享信息
+    btnShareMoment: function (e) {
+        var that = this;
     },
     // 加载更多
     loadMoreList: function (e) {

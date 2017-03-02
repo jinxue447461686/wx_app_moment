@@ -1,0 +1,43 @@
+<view style="height: {{scrollHeight}}px;">
+    <!-- 加载 -->
+    <loading hidden="{{loadingHidden}}">
+        加载中...
+    </loading>
+    <view class="moment-item">
+        <view class="moment-item-title">{{momentInfo.momentTitle}}</view>
+        <view class="moment-item-image" data-index="{{moment.momentId}}" bindtap="btnPlayMoment">
+            <image mode="widthFix" src="{{momentInfo.showUrl}}"></image>
+        </view>
+    </view>
+    <view>
+        <scroll-view class="comment-item-list" scroll-y="true"
+                     bindscrolltolower="loadMoreList" lower-threshold="60">
+            <view class="moment-item" wx:for="{{commentInfoList}}" wx:for-index="idx" wx:for-item="comment">
+                <view>
+                    <image src="{{comment.userImageUrl}}"></image>
+                </view>
+                <view>
+                    {{comment.userNickName}}
+                </view>
+                <view>
+                    {{comment.createDateTime}}
+                </view>
+                <view>
+                    {{comment.commentContent}}
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="txt-comment">
+        <view class="txt-comment-pen">
+            <image style="width:50rpx;height:50rpx;" mode="aspectFit" src="../../images/pen.png"></image>
+        </view>
+        <view class="txt-comment-input">
+            <input placeholder="期待您的神评论" maxlength="140" bindconfirm="addComment" auto-focus/>
+        </view>
+        <view class="txt-comment-send">
+            <image style="width:50rpx;height:50rpx;" mode="aspectFit" src="../../images/send.png"
+                   bindtap="addComment"></image>
+        </view>
+    </view>
+</view>
